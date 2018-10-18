@@ -42,7 +42,7 @@ env:
   - git push https://${GITHUB_TOKEN}@github.com/Rochet2/TrinityCore.git HEAD:${BRANCH}
 
 before_install:
-	- export CXX="ccache clang++"
+  - export CXX="ccache clang++"
   - export CC="ccache clang"
   - export CCACHE_CPP2="true"
   - which g++ gcc clang clang++ cc c++
@@ -55,7 +55,7 @@ before_install:
   - git merge -m "Merge TrinityCore master to ${BRANCH} [skip ci]" Trinity/master
   - git submodule update --init --recursive
   - git status
-  - git config user.email "rochet2@post.com" && git config user.name "Rochet2"
+  - git config user.email "travis@build.bot" && git config user.name "Travis CI"
   - git tag -a -m "Travis build" init
 
 install:
