@@ -31,14 +31,14 @@ services:
 cache: ccache
 
 env:
-  - BRANCH="7.x"
-  - BRANCH="multivendor_7.x"
-  - BRANCH="playeritemgossip_7.x"
-  - BRANCH="dressnpcs_7.x"
-  - BRANCH="objscale_7.x"
-  - BRANCH="gomove_7.x"
+  - BRANCH=7.x
+  - BRANCH=multivendor_7.x
+  - BRANCH=playeritemgossip_7.x
+  - BRANCH=dressnpcs_7.x
+  - BRANCH=objscale_7.x
+  - BRANCH=gomove_7.x
 
- after_success:
+after_success:
   - git push https://${GITHUB_TOKEN}@github.com/Rochet2/TrinityCore.git HEAD:${BRANCH}
 
 before_install:
