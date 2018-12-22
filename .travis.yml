@@ -28,8 +28,6 @@ addons:
 services:
   - mysql
 
-cache: ccache
-
 env:
   - BRANCH=master
   - BRANCH=multivendor_master
@@ -42,11 +40,6 @@ after_success:
   - git push https://${GITHUB_TOKEN}@github.com/Rochet2/TrinityCore.git HEAD:${BRANCH}
 
 before_install:
-  - export CXX="ccache clang++"
-  - export CC="ccache clang"
-  - export CCACHE_CPP2="true"
-  - which g++ gcc clang clang++ cc c++
-  - ccache --show-stats
   - git clone --depth=100 --branch=${BRANCH} https://github.com/Rochet2/TrinityCore.git server
   - cd server
   - git status
@@ -62,7 +55,7 @@ install:
   - mysql -uroot -e 'create database test_mysql;'
   - mkdir bin
   - cd bin
-  - cmake ../ -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=0 -DUSE_SCRIPTPCH=0 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=1 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS="-Werror" -DCMAKE_CXX_FLAGS="-Werror" -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
+  - cmake ../ -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=1 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS="-Werror" -DCMAKE_CXX_FLAGS="-Werror" -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
   - cd ..
   - chmod +x contrib/check_updates.sh
 
