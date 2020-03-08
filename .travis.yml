@@ -37,7 +37,7 @@ env:
   - BRANCH=gomove_master
 
 after_success:
-  - git push https://${GITHUB_TOKEN}@github.com/Rochet2/TrinityCore.git HEAD:${BRANCH}
+  - git push https://${GITHUB_TOKEN}@github.com/Rochet2/TrinityCore.git HEAD:${BRANCH} >/dev/null 2>&1
 
 before_install:
   - git clone --depth=100 --branch=${BRANCH} https://github.com/Rochet2/TrinityCore.git server
