@@ -5,6 +5,9 @@ language: cpp
 compiler:
   - clang
 
+git:
+  depth: 1000
+
 addons:
   apt:
     sources:
